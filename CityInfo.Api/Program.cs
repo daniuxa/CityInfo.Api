@@ -1,4 +1,8 @@
+using CityInfo.Api;
+using CityInfo.Api.DbContexts;
+using CityInfo.Api.Services;
 using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration().MinimumLevel.Debug().
@@ -19,6 +23,16 @@ builder.Services.AddControllers(options => options.ReturnHttpNotAcceptable = tru
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<FileExtensionContentTypeProvider>();
+
+#if DEBUG
+builder.Services.AddTransient<IMailService, LocalMailService>();
+#else
+builder.Services.AddTransient<IMailService, CloudMailService>();
+#endif
+
+builder.Services.AddSingleton<CityDataStore>();
+
+builder.Services.AddDbContext<CityInfoContext>(context => context.UseSqlServer(builder.Configuration["ConnectionStrings:CityInfoDbConnectionString"]));
 
 var app = builder.Build();
 
