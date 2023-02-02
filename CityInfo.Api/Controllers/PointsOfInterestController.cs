@@ -27,7 +27,7 @@ namespace CityInfo.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PointOfInterestDto>>> GetPointsOfInterest(int cityId)
         {
-            if (await cityInfoRepository.CityExistsAsync(cityId))
+            if (!await cityInfoRepository.CityExistsAsync(cityId))
             {
                 _logger.LogInformation($"City with Id {cityId} not found");
                 return NotFound();
