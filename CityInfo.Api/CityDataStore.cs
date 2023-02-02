@@ -15,7 +15,7 @@ namespace CityInfo.Api
                     Id = 1,
                     Name = "Kyiv",
                     Description = "City where I was born",
-                    PointOfInterests = new List<PointOfInterestDto>()
+                    PointsOfInterests = new List<PointOfInterestDto>()
                     {
                         new() {Id = 1, Name = "Golden Gate"},
                         new() {Id = 2, Name = "Dnipro river"}
@@ -26,7 +26,7 @@ namespace CityInfo.Api
                     Id = 2,
                     Name = "Lviv",
                     Description = "One of the mos beautiful cities",
-                    PointOfInterests = new List<PointOfInterestDto>()
+                    PointsOfInterests = new List<PointOfInterestDto>()
                     {
                         new() {Id = 3, Name = "Town hall"},
                         new() {Id = 4, Name = "Park"}

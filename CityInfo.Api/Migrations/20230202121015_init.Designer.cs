@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CityInfo.Api.Migrations
 {
     [DbContext(typeof(CityInfoContext))]
-    [Migration("20230130233852_AddedDescriptionToPointOfInterest")]
-    partial class AddedDescriptionToPointOfInterest
+    [Migration("20230202121015_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,6 +43,20 @@ namespace CityInfo.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cities");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "City where I was born",
+                            Name = "Kyiv"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "One of the mos beautiful cities",
+                            Name = "Lviv"
+                        });
                 });
 
             modelBuilder.Entity("CityInfo.Api.Entities.PointOfInterest", b =>
@@ -70,6 +84,36 @@ namespace CityInfo.Api.Migrations
                     b.HasIndex("CityId");
 
                     b.ToTable("PointOfInterests");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CityId = 1,
+                            Description = "Gate",
+                            Name = "Golden Gate"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CityId = 1,
+                            Description = "River",
+                            Name = "Dnipro river"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CityId = 2,
+                            Description = "Hall",
+                            Name = "Town hall"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CityId = 2,
+                            Description = "Park",
+                            Name = "Park"
+                        });
                 });
 
             modelBuilder.Entity("CityInfo.Api.Entities.PointOfInterest", b =>
